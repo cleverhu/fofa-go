@@ -55,7 +55,7 @@ type SingleData struct {
 }
 
 const (
-	defaultAPIUrl = "https://fofa.so/api/v1/search/all?"
+	defaultAPIUrl = "https://fofa.info/api/v1/search/all?"
 )
 
 // NewFofaClient create a fofa client
@@ -156,7 +156,7 @@ func (ff *Fofa) QueryAsObject(page uint, size uint, full string, args ...[]byte)
 	return
 }
 
-//toData tmpData struct to data struct
+// toData tmpData struct to data struct
 func (ff *Fofa) toData(content []byte) (data Data, err error) {
 	var tmpData SingleData
 	err = json.Unmarshal(content, &tmpData)
@@ -201,7 +201,7 @@ func (ff *Fofa) UserInfo() (user *User, err error) {
 	return user, nil
 }
 
-//String user to string
+// String user to string
 func (u *User) String() string {
 	data, err := json.Marshal(u)
 	if err != nil {
@@ -211,7 +211,7 @@ func (u *User) String() string {
 	return string(data)
 }
 
-//String data to string
+// String data to string
 func (r *Data) String() string {
 	data, err := json.Marshal(r)
 	if err != nil {

@@ -1,4 +1,4 @@
-module github.com/xiaoyu-0814/fofa-go
+module github.com/cleverhu/fofa-go
 
 go 1.15
 

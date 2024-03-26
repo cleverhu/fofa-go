@@ -29,13 +29,13 @@ go version go1.15.3 windows/amd64
 ### 使用
 
 ```go
-import "github.com/xiaoyu-0814/fofa-go/fofa"
+import "github.com/cleverhu/fofa-go/fofa"
 ```
 
 ### 获取
 
 ``` zsh
-go get github.com/xiaoyu-0814/fofa-go/fofa
+go get github.com/cleverhu/fofa-go/fofa
 ```
 
 ### 依赖
@@ -92,7 +92,7 @@ func FofaExample() {
 
 #### 0x01 下载
 
-直接下载即可使用,链接：<a href="https://github.com/xiaoyu-0814/fofa-go/releases/tag/v1.0.0"><font face="menlo">`FOFA Cli`</font></a>
+直接下载即可使用,链接：<a href="https://github.com/cleverhu/fofa-go/releases/tag/v1.0.0"><font face="menlo">`FOFA Cli`</font></a>
 
 linux需要加权限并在root用户下运行：chmod +777 fofa
 

@@ -6,7 +6,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/xiaoyu-0814/fofa-go/fofa"
+	"github.com/cleverhu/fofa-go/fofa"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -19,7 +19,7 @@ var clt *fofa.Fofa
 
 const version = "1.0.0"
 
-//setClt Init fofa client
+// setClt Init fofa client
 func setClt() {
 	var err error
 	*email, *key, err = getKey()
@@ -27,7 +27,7 @@ func setClt() {
 	clt = fofa.NewFofaClient([]byte(*email), []byte(*key))
 }
 
-//getInfo Get user info
+// getInfo Get user info
 func getInfo() {
 	userInfo, err := clt.UserInfo()
 	fofaErr(err)
@@ -39,7 +39,7 @@ func getInfo() {
 	os.Exit(0)
 }
 
-//search Fofa search
+// search Fofa search
 func search() {
 	if *page <= 0 {
 		*page = 1
@@ -49,7 +49,6 @@ func search() {
 		usage()
 		os.Exit(0)
 	}
-
 
 	*query = queryDomainParse(*query)
 
@@ -110,7 +109,7 @@ func parse() {
 	flag.CommandLine.Parse(os.Args[2:])
 }
 
-//userInit Init user email and apikey
+// userInit Init user email and apikey
 func userInit() {
 	if *email == "" || *key == "" {
 		fofaErr(errors.New("please input your email and key\nfofa_cli init -email example@fofa.so -key 32charsMD5String"))
@@ -137,7 +136,7 @@ func userInit() {
 		userInfo.UserName, userInfo.Fcoin, userInfo.Vip, userInfo.VipLevel)
 }
 
-//getKey Get user email and apikey
+// getKey Get user email and apikey
 func getKey() (email, key string, err error) {
 	var (
 		keyPath string
@@ -161,7 +160,7 @@ func getKey() (email, key string, err error) {
 	return
 }
 
-//getPath Get home path
+// getPath Get home path
 func getPath() (string, string, error) {
 	user, err := user.Current()
 	if nil == err {
@@ -184,7 +183,7 @@ func getPath() (string, string, error) {
 	return setFofaPath("", err)
 }
 
-//setFofaPath Set fofa dir
+// setFofaPath Set fofa dir
 func setFofaPath(home string, err error) (string, string, error) {
 	if err != nil {
 		return "", "", err
@@ -195,7 +194,7 @@ func setFofaPath(home string, err error) (string, string, error) {
 	return fofaPath, keyPath, nil
 }
 
-//homeUnix Unix-like system, so just assume Unix
+// homeUnix Unix-like system, so just assume Unix
 func homeUnix() (string, error) {
 	// First prefer the HOME environmental variable
 	if home := os.Getenv("HOME"); home != "" {
@@ -232,18 +231,18 @@ func homeWindows() (string, error) {
 	return home, nil
 }
 
-//fileExist Check to see if the file exists
+// fileExist Check to see if the file exists
 func fileExist(path string) bool {
 	_, err := os.Lstat(path)
 	return !os.IsNotExist(err)
 }
 
-//cliVersion fmt cli version
+// cliVersion fmt cli version
 func cliVersion() {
 	fmt.Printf("\nVersion：%s\n", version)
 }
 
-//queryDomainParse Domain Exceptions
+// queryDomainParse Domain Exceptions
 func queryDomainParse(query string) string {
 	queryArr := strings.Split(query, "&&")
 	for _, v := range queryArr {
